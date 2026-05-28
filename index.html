@@ -158,6 +158,8 @@ outline:none;
 font-size:14px;
 }
 
+/* BOTÕES */
+
 .sidebar button{
 width:100%;
 padding:16px;
@@ -174,8 +176,6 @@ transition:0.2s;
 background:#1d4f1f;
 color:#fff;
 }
-
-/* BOTÃO ATIVO */
 
 .sidebar button.active{
 background:#1d4f1f;
@@ -675,7 +675,7 @@ colhedoras:[
 
 };
 
-/* LOAD PROFISSIONAL */
+/* LOAD */
 
 function load(cat){
 
@@ -770,6 +770,19 @@ results.push(p);
 });
 
 render(results);
+
+/* ABRE AUTOMATICAMENTE RESULTADOS */
+
+document.getElementById('grid').scrollIntoView({
+behavior:'smooth',
+block:'start'
+});
+
+/* REMOVE BOTÃO ATIVO */
+
+document.querySelectorAll('.sidebar button').forEach(btn=>{
+btn.classList.remove('active');
+});
 
 }
 
