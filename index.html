@@ -158,8 +158,6 @@ outline:none;
 font-size:14px;
 }
 
-/* BOTÕES */
-
 .sidebar button{
 width:100%;
 padding:16px;
@@ -173,11 +171,6 @@ transition:0.2s;
 }
 
 .sidebar button:hover{
-background:#1d4f1f;
-color:#fff;
-}
-
-.sidebar button.active{
 background:#1d4f1f;
 color:#fff;
 }
@@ -256,6 +249,18 @@ transition:0.2s;
 
 .add:hover{
 background:#143915;
+}
+
+/* ANIMAÇÃO CARRINHO */
+
+.fly-item{
+position:fixed;
+z-index:999999;
+pointer-events:none;
+border-radius:12px;
+object-fit:cover;
+transition:all 0.8s cubic-bezier(.2,.8,.2,1);
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
 /* FOOTER */
@@ -405,32 +410,44 @@ cursor:pointer;
 z-index:99999;
 display:none;
 box-shadow:0 5px 15px rgba(0,0,0,0.25);
-transition:0.3s;
-}
-
-#topBtn:hover{
-transform:translateY(-4px);
-background:#d96d10;
 }
 
 /* MOBILE */
 
 @media(max-width:768px){
 
-.container{
+.market{
+grid-template-columns:1fr;
 padding:0 12px;
+}
+
+.products{
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.hero{
+min-height:220px;
+background-size:contain;
+}
+
+.panel{
+width:100%;
+right:-100%;
 }
 
 .topbar{
 flex-direction:column;
-align-items:center;
 text-align:center;
-padding:18px 0;
+}
+
+nav{
+flex-wrap:wrap;
+justify-content:center;
 }
 
 .logo{
 flex-direction:column;
-gap:10px;
 }
 
 .logo img{
@@ -439,88 +456,6 @@ width:85px;
 
 .logo-text h1{
 font-size:26px;
-}
-
-.logo-text p{
-font-size:11px;
-}
-
-nav{
-justify-content:center;
-flex-wrap:wrap;
-gap:8px;
-width:100%;
-}
-
-nav a{
-font-size:13px;
-padding:8px 10px;
-}
-
-.hero{
-min-height:220px;
-background-size:contain;
-}
-
-.market{
-grid-template-columns:1fr;
-margin-top:20px;
-padding:0 12px;
-}
-
-.sidebar{
-padding:18px;
-}
-
-.products{
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-.card{
-padding:10px;
-}
-
-.card img{
-height:110px;
-}
-
-.card h4{
-font-size:12px;
-min-height:35px;
-}
-
-.cart{
-right:12px;
-bottom:12px;
-padding:14px 18px;
-font-size:14px;
-}
-
-.panel{
-width:100%;
-right:-100%;
-}
-
-#topBtn{
-right:12px;
-bottom:80px;
-width:50px;
-height:50px;
-font-size:18px;
-}
-
-footer{
-padding:50px 20px 30px;
-}
-
-.footer-grid{
-grid-template-columns:1fr;
-gap:25px;
-}
-
-footer h2{
-font-size:22px;
 }
 
 }
@@ -594,7 +529,19 @@ font-size:22px;
 <h3><i class="fa fa-building"></i> SOBRE O GRUPO</h3>
 
 <p>
-O Grupo Vila Velha é referência no setor agrícola da região.
+O Grupo Vila Velha é referência no setor agrícola da região, unindo experiência, qualidade e compromisso com o produtor rural há décadas.
+</p>
+
+<p>
+Fundada em 1995, a Comercial Agrícola Vila Velha Ltda iniciou sua trajetória no comércio atacadista de defensivos agrícolas, adubos e produtos voltados ao agronegócio.
+</p>
+
+<p>
+Há 9 anos nasceu a Vila Velha Máquinas e Equipamentos LTDA, especializada em máquinas, implementos, equipamentos agropecuários e peças em geral.
+</p>
+
+<p>
+Hoje o grupo oferece soluções completas para o campo, com atendimento especializado, qualidade e confiança em cada negócio.
 </p>
 
 </div>
@@ -603,7 +550,31 @@ O Grupo Vila Velha é referência no setor agrícola da região.
 
 <h3><i class="fa fa-phone"></i> CONTATO</h3>
 
-<p><a href="https://wa.me/5514998510406">Deverli</a></p>
+<p>
+<a href="https://wa.me/5514998510406" target="_blank">
+Deverli (PEÇAS E ASSISTÊNCIA)
+</a>
+</p>
+
+<p>
+<a href="https://wa.me/5514998715100" target="_blank">
+Luiz (PEÇAS)
+</a>
+</p>
+
+<p>
+<a href="https://wa.me/5514996484753" target="_blank">
+Lucas (IMPLEMENTOS)
+</a>
+</p>
+
+<p>
+<a href="https://www.google.com/maps/search/?api=1&query=Rua+Bar%C3%A3o+do+Rio+Branco+561+Fartura+SP" target="_blank">
+Rua Barão do Rio Branco, 561
+</a>
+</p>
+
+<p>CEP 18870-054</p>
 
 </div>
 
@@ -688,8 +659,6 @@ colhedoras:[
 
 };
 
-/* LOAD */
-
 function load(cat){
 
 currentCat = cat;
@@ -697,8 +666,6 @@ currentCat = cat;
 render(data[cat]);
 
 }
-
-/* RENDER */
 
 function render(list){
 
@@ -727,7 +694,7 @@ g.innerHTML += `
 
 </div>
 
-<button class="add" onclick="add(${i})">
+<button class="add" onclick="add(${i}, this)">
 Adicionar
 </button>
 
@@ -737,8 +704,6 @@ Adicionar
 });
 
 }
-
-/* SEARCH */
 
 function searchAll(){
 
@@ -765,8 +730,6 @@ render(results);
 
 }
 
-/* QTD */
-
 function change(i,val){
 
 data[currentCat][i].qty += val;
@@ -779,11 +742,42 @@ render(data[currentCat]);
 
 }
 
-/* ADD */
-
-function add(i){
+function add(i, btn){
 
 let item = data[currentCat][i];
+
+const card = btn.closest('.card');
+const img = card.querySelector('img');
+const cartBtn = document.querySelector('.cart');
+
+const fly = img.cloneNode(true);
+
+fly.classList.add('fly-item');
+
+document.body.appendChild(fly);
+
+const imgRect = img.getBoundingClientRect();
+const cartRect = cartBtn.getBoundingClientRect();
+
+fly.style.left = imgRect.left + 'px';
+fly.style.top = imgRect.top + 'px';
+fly.style.width = imgRect.width + 'px';
+fly.style.height = imgRect.height + 'px';
+
+setTimeout(()=>{
+
+fly.style.left = cartRect.left + 'px';
+fly.style.top = cartRect.top + 'px';
+fly.style.width = '20px';
+fly.style.height = '20px';
+fly.style.opacity = '0.3';
+fly.style.transform = 'scale(0.2)';
+
+},10);
+
+setTimeout(()=>{
+fly.remove();
+},850);
 
 let found = cart.find(c=>c.code===item.code);
 
@@ -797,8 +791,6 @@ updateCart();
 
 }
 
-/* UPDATE */
-
 function updateCart(){
 
 document.getElementById("count").innerText =
@@ -807,8 +799,6 @@ cart.reduce((a,b)=>a+b.qty,0);
 renderCart();
 
 }
-
-/* RENDER CART */
 
 function renderCart(){
 
@@ -842,8 +832,6 @@ Remover
 
 }
 
-/* CART QTD */
-
 function cartQty(index,val){
 
 let item = cart[index];
@@ -860,8 +848,6 @@ updateCart();
 
 }
 
-/* REMOVE */
-
 function removeItem(i){
 
 cart.splice(i,1);
@@ -870,16 +856,12 @@ updateCart();
 
 }
 
-/* TOGGLE */
-
 function toggleCart(){
 
 document.getElementById("panel")
 .classList.toggle("active");
 
 }
-
-/* WHATSAPP */
 
 function send(){
 
@@ -897,8 +879,6 @@ window.open(
 );
 
 }
-
-/* BOTÃO TOPO */
 
 window.onscroll = function(){
 
@@ -920,8 +900,6 @@ behavior:'smooth'
 });
 
 }
-
-/* START */
 
 load('pecas');
 
