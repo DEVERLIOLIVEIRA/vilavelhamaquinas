@@ -388,6 +388,31 @@ margin-top:10px;
 cursor:pointer;
 }
 
+/* BOTÃO TOPO */
+
+#topBtn{
+position:fixed;
+right:20px;
+bottom:90px;
+width:55px;
+height:55px;
+border:none;
+border-radius:50%;
+background:#f58220;
+color:#fff;
+font-size:20px;
+cursor:pointer;
+z-index:99999;
+display:none;
+box-shadow:0 5px 15px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+#topBtn:hover{
+transform:translateY(-4px);
+background:#d96d10;
+}
+
 /* MOBILE */
 
 @media(max-width:768px){
@@ -475,6 +500,14 @@ font-size:14px;
 .panel{
 width:100%;
 right:-100%;
+}
+
+#topBtn{
+right:12px;
+bottom:80px;
+width:50px;
+height:50px;
+font-size:18px;
 }
 
 footer{
@@ -583,9 +616,7 @@ Hoje o grupo oferece soluções completas para o campo, com atendimento especial
 <h3><i class="fa fa-phone"></i> CONTATO</h3>
 
 <p><a href="https://wa.me/5514998510406">Deverli (PEÇAS E ASSISTÊNCIA)</a></p>
-
 <p><a href="https://wa.me/5514998715100">Luiz (PEÇAS)</a></p>
-
 <p><a href="https://wa.me/5514996484753">Lucas (IMPLEMENTOS)</a></p>
 
 <p>
@@ -621,6 +652,12 @@ Enviar WhatsApp
 
 </div>
 
+<!-- BOTÃO TOPO -->
+
+<button id="topBtn" onclick="topFunction()">
+<i class="fa fa-arrow-up"></i>
+</button>
+
 <script>
 
 let cart = [];
@@ -636,41 +673,6 @@ pecas:[
 plantadeiras:[
 {code:"PL1",name:"Disco plantadeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
 {code:"PL2",name:"Mola plantadeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
-],
-
-ensiladeiras:[
-{code:"EN1",name:"Lâmina ensiladeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"EN2",name:"Rotor alimentação",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
-],
-
-rolamentos:[
-{code:"RO1",name:"Rolamento 6204",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"RO2",name:"Rolamento 6305",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
-],
-
-mancais:[
-{code:"MA1",name:"Mancal ferro fundido",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"MA2",name:"Mancal com rolamento",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
-],
-
-correntes:[
-{code:"CO1",name:"Corrente agrícola 50H",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"CO2",name:"Corrente reforçada transmissão",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
-],
-
-jacto:[
-{code:"JA1",name:"Bico pulverizador Jacto",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"JA2",name:"Filtro pulverizador Jacto",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
-],
-
-recolhedoras:[
-{code:"RE1",name:"Pente recolhedor",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"RE2",name:"Tambor recolhedora",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
-],
-
-colhedoras:[
-{code:"CL1",name:"Faca colhedora milho",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"CL2",name:"Placa corte reforçada",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ]
 
 };
@@ -771,14 +773,10 @@ results.push(p);
 
 render(results);
 
-/* ABRE AUTOMATICAMENTE RESULTADOS */
-
 document.getElementById('grid').scrollIntoView({
 behavior:'smooth',
 block:'start'
 });
-
-/* REMOVE BOTÃO ATIVO */
 
 document.querySelectorAll('.sidebar button').forEach(btn=>{
 btn.classList.remove('active');
@@ -909,14 +907,35 @@ function send(){
 let msg = "ORÇAMENTO:%0A";
 
 cart.forEach(i=>{
-
 msg += `${i.code} - ${i.name} - Qtd:${i.qty}%0A`;
-
 });
 
 window.open(
 "https://wa.me/5514998510406?text="+msg
 );
+
+}
+
+/* BOTÃO TOPO */
+
+window.onscroll = function(){
+
+const btn = document.getElementById("topBtn");
+
+if(document.body.scrollTop > 400 || document.documentElement.scrollTop > 400){
+btn.style.display = "block";
+}else{
+btn.style.display = "none";
+}
+
+};
+
+function topFunction(){
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
 
 }
 
