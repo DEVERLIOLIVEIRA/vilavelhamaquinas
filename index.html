@@ -594,19 +594,7 @@ font-size:22px;
 <h3><i class="fa fa-building"></i> SOBRE O GRUPO</h3>
 
 <p>
-O Grupo Vila Velha é referência no setor agrícola da região, unindo experiência, qualidade e compromisso com o produtor rural há décadas.
-</p>
-
-<p>
-Fundada em 1995, a Comercial Agrícola Vila Velha Ltda iniciou sua trajetória no comércio atacadista de defensivos agrícolas, adubos e produtos voltados ao agronegócio.
-</p>
-
-<p>
-Há 9 anos nasceu a Vila Velha Máquinas e Equipamentos LTDA, especializada em máquinas, implementos, equipamentos agropecuários e peças em geral.
-</p>
-
-<p>
-Hoje o grupo oferece soluções completas para o campo, com atendimento especializado, qualidade e confiança em cada negócio.
+O Grupo Vila Velha é referência no setor agrícola da região.
 </p>
 
 </div>
@@ -615,17 +603,7 @@ Hoje o grupo oferece soluções completas para o campo, com atendimento especial
 
 <h3><i class="fa fa-phone"></i> CONTATO</h3>
 
-<p><a href="https://wa.me/5514998510406">Deverli (PEÇAS E ASSISTÊNCIA)</a></p>
-<p><a href="https://wa.me/5514998715100">Luiz (PEÇAS)</a></p>
-<p><a href="https://wa.me/5514996484753">Lucas (IMPLEMENTOS)</a></p>
-
-<p>
-<a href="https://www.google.com/maps/search/?api=1&query=Rua+Bar%C3%A3o+do+Rio+Branco+561+Fartura+SP" target="_blank">
-Rua Barão do Rio Branco, 561
-</a>
-</p>
-
-<p>CEP 18870-054</p>
+<p><a href="https://wa.me/5514998510406">Deverli</a></p>
 
 </div>
 
@@ -652,8 +630,6 @@ Enviar WhatsApp
 
 </div>
 
-<!-- BOTÃO TOPO -->
-
 <button id="topBtn" onclick="topFunction()">
 <i class="fa fa-arrow-up"></i>
 </button>
@@ -673,6 +649,41 @@ pecas:[
 plantadeiras:[
 {code:"PL1",name:"Disco plantadeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
 {code:"PL2",name:"Mola plantadeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+
+ensiladeiras:[
+{code:"EN1",name:"Lâmina ensiladeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"EN2",name:"Rotor alimentação",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+
+rolamentos:[
+{code:"RO1",name:"Rolamento 6204",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"RO2",name:"Rolamento 6305",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+
+mancais:[
+{code:"MA1",name:"Mancal ferro fundido",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"MA2",name:"Mancal com rolamento",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+
+correntes:[
+{code:"CO1",name:"Corrente agrícola 50H",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"CO2",name:"Corrente reforçada transmissão",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+
+jacto:[
+{code:"JA1",name:"Bico pulverizador Jacto",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"JA2",name:"Filtro pulverizador Jacto",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+
+recolhedoras:[
+{code:"RE1",name:"Pente recolhedor",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"RE2",name:"Tambor recolhedora",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+
+colhedoras:[
+{code:"CL1",name:"Faca colhedora milho",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"CL2",name:"Placa corte reforçada",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ]
 
 };
@@ -684,25 +695,6 @@ function load(cat){
 currentCat = cat;
 
 render(data[cat]);
-
-document.querySelectorAll('.sidebar button').forEach(btn=>{
-btn.classList.remove('active');
-});
-
-const buttons = document.querySelectorAll('.sidebar button');
-
-buttons.forEach(btn=>{
-
-if(btn.getAttribute('onclick') === `load('${cat}')`){
-btn.classList.add('active');
-}
-
-});
-
-document.getElementById('grid').scrollIntoView({
-behavior:'smooth',
-block:'start'
-});
 
 }
 
@@ -717,7 +709,6 @@ g.innerHTML = "";
 list.forEach((p,i)=>{
 
 g.innerHTML += `
-
 <div class="card">
 
 <img src="${p.img}">
@@ -741,7 +732,6 @@ Adicionar
 </button>
 
 </div>
-
 `;
 
 });
@@ -772,15 +762,6 @@ results.push(p);
 });
 
 render(results);
-
-document.getElementById('grid').scrollIntoView({
-behavior:'smooth',
-block:'start'
-});
-
-document.querySelectorAll('.sidebar button').forEach(btn=>{
-btn.classList.remove('active');
-});
 
 }
 
@@ -838,7 +819,6 @@ c.innerHTML = "";
 cart.forEach((i,index)=>{
 
 c.innerHTML += `
-
 <div class="item">
 
 <b>${i.code}</b><br>
@@ -856,7 +836,6 @@ Remover
 </button>
 
 </div>
-
 `;
 
 });
@@ -900,18 +879,21 @@ document.getElementById("panel")
 
 }
 
-/* SEND */
+/* WHATSAPP */
 
 function send(){
 
-let msg = "ORÇAMENTO:%0A";
+let msg = "Olá, gostaria de um orçamento:%0A%0A";
 
 cart.forEach(i=>{
-msg += `${i.code} - ${i.name} - Qtd:${i.qty}%0A`;
+
+msg += `${i.qty} und - ${i.code} - ${i.name}%0A`;
+
 });
 
 window.open(
-"https://wa.me/5514998510406?text="+msg
+"https://wa.me/5514998510406?text="+msg,
+"_blank"
 );
 
 }
