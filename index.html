@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vila Velha Máquinas e Equipamentos LTDA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* BASE */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Montserrat;}
+
+body{
+background:#fafafa;
+overflow-x:hidden;
+scroll-behavior:smooth;
+}
+
+.container{width:100%;max-width:1400px;margin:auto;padding:0 20px;}
+
+/* ================= HEADER AINDA MAIOR ================= */
+
+header{
+background:#fff;
+position:sticky;
+top:0;
+z-index:9999;
+box-shadow:0 3px 15px rgba(0,0,0,0.10);
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:26px 0;
+flex-wrap:wrap;
+gap:18px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.logo img{
+width:115px;
+height:auto;
+object-fit:contain;
+}
+
+.logo-text h1{
+font-size:34px;
+font-weight:900;
+color:#1d4f1f;
+line-height:1;
+}
+
+.logo-text p{
+font-size:14px;
+font-weight:800;
+color:#f58220;
+margin-top:3px;
+letter-spacing:0.4px;
+}
+
+nav{
+display:flex;
+gap:28px;
+align-items:center;
+}
+
+nav a{
+text-decoration:none;
+color:#222;
+font-weight:900;
+font-size:16px;
+padding:10px 14px;
+border-radius:8px;
+transition:0.2s;
+}
+
+nav a:hover{
+background:#1d4f1f;
+color:#fff;
+}
+
+@media(max-width:768px){
+.topbar{
+flex-direction:column;
+align-items:flex-start;
+}
+nav{
+flex-wrap:wrap;
+gap:12px;
+}
+}
+
+/* HERO */
+.hero{
+width:100%;
+height:600px;
+background:url('https://i.ibb.co/9HHmb4T8/BANNER-ATUALIZADO.png') center/contain no-repeat;
+background-color:#fff;
+}
+
+/* MARKET */
+.market{
+display:grid;
+grid-template-columns:320px 1fr;
+gap:20px;
+margin:40px 0 0 0;
+}
+
+/* SIDEBAR */
+.sidebar{
+background:#fff;
+padding:25px;
+border-radius:14px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+width:320px;
+}
+
+.sidebar h3{
+font-size:22px;
+font-weight:900;
+color:#1d4f1f;
+margin-bottom:15px;
+}
+
+.search-box{display:flex;margin-bottom:15px;}
+.search-box input{
+flex:1;
+padding:14px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+.sidebar button{
+width:100%;
+padding:16px;
+margin-bottom:12px;
+border:none;
+border-radius:10px;
+background:#f5f5f5;
+font-weight:800;
+cursor:pointer;
+}
+
+.sidebar button:hover{
+background:#1d4f1f;
+color:#fff;
+}
+
+/* PRODUCTS */
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:15px;
+}
+
+.card{
+background:#fff;
+padding:12px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+.card img{width:100%;height:130px;object-fit:cover;border-radius:8px;}
+.code{font-size:11px;color:#777;}
+h4{font-size:13px;margin:6px 0;}
+
+.qty{display:flex;justify-content:center;gap:8px;margin:8px 0;}
+.qty button{padding:5px 10px;border:none;background:#ddd;font-weight:900;cursor:pointer;}
+.add{width:100%;padding:8px;background:#1d4f1f;color:#fff;border:none;cursor:pointer;}
+
+/* FOOTER */
+footer{
+background:#000;
+color:#fff;
+padding:70px 30px 40px;
+margin-top:60px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+max-width:1100px;
+margin:auto;
+}
+
+footer h2{
+text-align:center;
+font-size:26px;
+margin-bottom:40px;
+}
+
+footer h3{
+color:#f58220;
+margin-bottom:10px;
+}
+
+footer p{
+font-size:14px;
+line-height:1.7;
+margin:6px 0;
+}
+
+footer a{
+color:#fff;
+text-decoration:none;
+font-weight:700;
+}
+
+footer i{
+margin-right:8px;
+color:#f58220;
+}
+
+/* CART */
+.cart{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#1d4f1f;
+color:#fff;
+padding:18px 22px;
+border-radius:50px;
+cursor:pointer;
+font-weight:800;
+}
+
+.cart span{
+background:#f58220;
+padding:3px 8px;
+border-radius:50%;
+color:#000;
+}
+
+.panel{
+position:fixed;
+right:-380px;
+top:0;
+width:340px;
+height:100%;
+background:#fff;
+box-shadow:-5px 0 15px rgba(0,0,0,0.2);
+transition:0.3s;
+padding:15px;
+z-index:9999;
+overflow-y:auto;
+}
+
+.panel.active{right:0;}
+
+.close{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+.close button{
+background:red;
+color:#fff;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.item{
+padding:10px;
+border-bottom:1px solid #eee;
+font-size:12px;
+}
+
+.item button{
+margin:2px;
+padding:4px 8px;
+border:none;
+cursor:pointer;
+font-weight:800;
+}
+
+.send{
+width:100%;
+padding:10px;
+background:#25d366;
+color:#fff;
+border:none;
+border-radius:10px;
+font-weight:900;
+margin-top:10px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container topbar">
+
+<div class="logo">
+<img src="https://i.ibb.co/gZMm5Zzb/somente-logo.png">
+<div class="logo-text">
+<h1>VILA VELHA</h1>
+<p>MÁQUINAS E EQUIPAMENTOS LTDA</p>
+</div>
+</div>
+
+<nav>
+<a href="#inicio">INÍCIO</a>
+<a href="#produtos">PRODUTOS</a>
+<a href="#contato">CONTATO</a>
+</nav>
+
+</div>
+</header>
+
+<section class="hero" id="inicio"></section>
+
+<div class="market" id="produtos">
+
+<div class="sidebar">
+<h3>Categorias</h3>
+
+<div class="search-box">
+<input id="search" oninput="searchAll()" placeholder="Buscar peça...">
+</div>
+
+<button onclick="load('pecas')">Peças</button>
+<button onclick="load('plantadeiras')">Plantadeiras</button>
+<button onclick="load('ensiladeiras')">Ensiladeiras</button>
+<button onclick="load('rolamentos')">Rolamentos</button>
+<button onclick="load('mancais')">Mancais</button>
+<button onclick="load('correntes')">Correntes</button>
+<button onclick="load('jacto')">Jacto</button>
+<button onclick="load('recolhedoras')">Recolhedoras</button>
+<button onclick="load('colhedoras')">Colhedoras</button>
+
+</div>
+
+<div id="grid" class="products"></div>
+
+</div>
+
+<footer id="contato">
+
+<h2>VILA VELHA MÁQUINAS E EQUIPAMENTOS</h2>
+
+<div class="footer-grid">
+
+<div>
+<h3><i class="fa fa-building"></i> SOBRE O GRUPO</h3>
+
+<p>
+O Grupo Vila Velha é referência no setor agrícola da região, unindo experiência, qualidade e compromisso com o produtor rural há décadas.
+</p>
+
+<p>
+Fundada em 1995, a Comercial Agrícola Vila Velha Ltda iniciou sua trajetória no comércio atacadista de defensivos agrícolas, adubos e produtos voltados ao agronegócio.
+</p>
+
+<p>
+Há 9 anos nasceu a Vila Velha Máquinas e Equipamentos LTDA, especializada em máquinas, implementos, equipamentos agropecuários e peças em geral.
+</p>
+
+<p>
+Hoje o grupo oferece soluções completas para o campo, com atendimento especializado, qualidade e confiança em cada negócio.
+</p>
+
+</div>
+
+<div>
+<h3><i class="fa fa-phone"></i> CONTATO</h3>
+
+<p><a href="https://wa.me/5514998510406">Deverli (PEÇAS E ASSISTÊNCIA)</a></p>
+<p><a href="https://wa.me/5514998715100">Luiz (PEÇAS)</a></p>
+<p><a href="https://wa.me/5514996484753">Lucas (IMPLEMENTOS)</a></p>
+
+<p>
+<a href="https://www.google.com/maps/search/?api=1&query=Rua+Bar%C3%A3o+do+Rio+Branco+561+Fartura+SP" target="_blank">
+Rua Barão do Rio Branco, 561
+</a>
+</p>
+
+<p>CEP 18870-054</p>
+
+</div>
+
+</div>
+
+</footer>
+
+<div class="cart" onclick="toggleCart()">
+Carrinho <span id="count">0</span>
+</div>
+
+<div class="panel" id="panel">
+
+<div class="close">
+<h3>Carrinho</h3>
+<button onclick="toggleCart()">✖</button>
+</div>
+
+<div id="cart"></div>
+
+<button class="send" onclick="send()">Enviar WhatsApp</button>
+
+</div>
+
+<script>
+
+let cart = [];
+let currentCat = 'pecas';
+
+const data = {
+pecas:[
+{code:"PC1",name:"Engrenagem agrícola",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"PC2",name:"Eixo transmissão",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+plantadeiras:[
+{code:"PL1",name:"Disco plantadeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"PL2",name:"Mola plantadeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+ensiladeiras:[
+{code:"EN1",name:"Lâmina ensiladeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"EN2",name:"Rotor alimentação",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+rolamentos:[
+{code:"RO1",name:"Rolamento 6204",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"RO2",name:"Rolamento 6305",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+mancais:[
+{code:"MA1",name:"Mancal ferro fundido",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"MA2",name:"Mancal com rolamento",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+correntes:[
+{code:"CO1",name:"Corrente agrícola 50H",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"CO2",name:"Corrente reforçada transmissão",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+jacto:[
+{code:"JA1",name:"Bico pulverizador Jacto",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"JA2",name:"Filtro pulverizador Jacto",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+recolhedoras:[
+{code:"RE1",name:"Pente recolhedor",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"RE2",name:"Tambor recolhedora",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+colhedoras:[
+{code:"CL1",name:"Faca colhedora milho",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"CL2",name:"Placa corte reforçada",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+]
+};
+
+function load(cat){
+currentCat = cat;
+render(data[cat]);
+}
+
+function render(list){
+let g=document.getElementById("grid");
+g.innerHTML="";
+list.forEach((p,i)=>{
+g.innerHTML+=`
+<div class="card">
+<img src="${p.img}">
+<div class="code">${p.code}</div>
+<h4>${p.name}</h4>
+
+<div class="qty">
+<button onclick="change(${i},-1)">-</button>
+<span>${p.qty}</span>
+<button onclick="change(${i},1)">+</button>
+</div>
+
+<button class="add" onclick="add(${i})">Adicionar</button>
+</div>`;
+});
+}
+
+function searchAll(){
+let v=document.getElementById("search").value.toLowerCase();
+let results=[];
+Object.keys(data).forEach(cat=>{
+data[cat].forEach(p=>{
+if(p.name.toLowerCase().includes(v)||p.code.toLowerCase().includes(v)){
+results.push(p);
+}
+});
+});
+render(results);
+}
+
+function change(i,val){
+data[currentCat][i].qty+=val;
+if(data[currentCat][i].qty<1)data[currentCat][i].qty=1;
+render(data[currentCat]);
+}
+
+function add(i){
+let item=data[currentCat][i];
+let found=cart.find(c=>c.code===item.code);
+if(found){found.qty+=item.qty;}else{cart.push({...item});}
+updateCart();
+}
+
+function updateCart(){
+document.getElementById("count").innerText =
+cart.reduce((a,b)=>a+b.qty,0);
+renderCart();
+}
+
+function renderCart(){
+let c=document.getElementById("cart");
+c.innerHTML="";
+cart.forEach((i,index)=>{
+c.innerHTML+=`
+<div class="item">
+<b>${i.code}</b><br>${i.name}<br>
+Qtd: ${i.qty}<br>
+
+<button onclick="cartQty(${index},1)">+</button>
+<button onclick="cartQty(${index},-1)">-</button>
+<button onclick="removeItem(${index})">Remover</button>
+</div>`;
+});
+}
+
+function cartQty(index,val){
+let item=cart[index];
+if(!item)return;
+item.qty+=val;
+if(item.qty<=0) cart.splice(index,1);
+updateCart();
+}
+
+function removeItem(i){
+cart.splice(i,1);
+updateCart();
+}
+
+function toggleCart(){
+document.getElementById("panel").classList.toggle("active");
+}
+
+function send(){
+let msg="ORÇAMENTO:%0A";
+cart.forEach(i=>{
+msg+=`${i.code} - ${i.name} - Qtd:${i.qty}%0A`;
+});
+window.open("https://wa.me/5514998510406?text="+msg);
+}
+
+load('pecas');
+
+</script>
+
+</body>
+</html>
