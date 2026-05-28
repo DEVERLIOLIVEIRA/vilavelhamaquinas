@@ -569,13 +569,6 @@ font-size:22px;
 
 <button onclick="load('pecas')">Peças</button>
 <button onclick="load('plantadeiras')">Plantadeiras</button>
-<button onclick="load('ensiladeiras')">Ensiladeiras</button>
-<button onclick="load('rolamentos')">Rolamentos</button>
-<button onclick="load('mancais')">Mancais</button>
-<button onclick="load('correntes')">Correntes</button>
-<button onclick="load('jacto')">Jacto</button>
-<button onclick="load('recolhedoras')">Recolhedoras</button>
-<button onclick="load('colhedoras')">Colhedoras</button>
 
 </div>
 
@@ -594,19 +587,7 @@ font-size:22px;
 <h3><i class="fa fa-building"></i> SOBRE O GRUPO</h3>
 
 <p>
-O Grupo Vila Velha é referência no setor agrícola da região, unindo experiência, qualidade e compromisso com o produtor rural há décadas.
-</p>
-
-<p>
-Fundada em 1995, a Comercial Agrícola Vila Velha Ltda iniciou sua trajetória no comércio atacadista de defensivos agrícolas, adubos e produtos voltados ao agronegócio.
-</p>
-
-<p>
-Há 9 anos nasceu a Vila Velha Máquinas e Equipamentos LTDA, especializada em máquinas, implementos, equipamentos agropecuários e peças em geral.
-</p>
-
-<p>
-Hoje o grupo oferece soluções completas para o campo, com atendimento especializado, qualidade e confiança em cada negócio.
+O Grupo Vila Velha é referência no setor agrícola da região.
 </p>
 
 </div>
@@ -615,17 +596,7 @@ Hoje o grupo oferece soluções completas para o campo, com atendimento especial
 
 <h3><i class="fa fa-phone"></i> CONTATO</h3>
 
-<p><a href="https://wa.me/5514998510406">Deverli (PEÇAS E ASSISTÊNCIA)</a></p>
-<p><a href="https://wa.me/5514998715100">Luiz (PEÇAS)</a></p>
-<p><a href="https://wa.me/5514996484753">Lucas (IMPLEMENTOS)</a></p>
-
-<p>
-<a href="https://www.google.com/maps/search/?api=1&query=Rua+Bar%C3%A3o+do+Rio+Branco+561+Fartura+SP" target="_blank">
-Rua Barão do Rio Branco, 561
-</a>
-</p>
-
-<p>CEP 18870-054</p>
+<p><a href="https://wa.me/5514998510406">Deverli</a></p>
 
 </div>
 
@@ -651,8 +622,6 @@ Enviar WhatsApp
 </button>
 
 </div>
-
-<!-- BOTÃO TOPO -->
 
 <button id="topBtn" onclick="topFunction()">
 <i class="fa fa-arrow-up"></i>
@@ -684,25 +653,6 @@ function load(cat){
 currentCat = cat;
 
 render(data[cat]);
-
-document.querySelectorAll('.sidebar button').forEach(btn=>{
-btn.classList.remove('active');
-});
-
-const buttons = document.querySelectorAll('.sidebar button');
-
-buttons.forEach(btn=>{
-
-if(btn.getAttribute('onclick') === `load('${cat}')`){
-btn.classList.add('active');
-}
-
-});
-
-document.getElementById('grid').scrollIntoView({
-behavior:'smooth',
-block:'start'
-});
 
 }
 
@@ -772,15 +722,6 @@ results.push(p);
 });
 
 render(results);
-
-document.getElementById('grid').scrollIntoView({
-behavior:'smooth',
-block:'start'
-});
-
-document.querySelectorAll('.sidebar button').forEach(btn=>{
-btn.classList.remove('active');
-});
 
 }
 
@@ -900,18 +841,21 @@ document.getElementById("panel")
 
 }
 
-/* SEND */
+/* WHATSAPP */
 
 function send(){
 
-let msg = "ORÇAMENTO:%0A";
+let msg = "Gostaria de solicitar um orçamento de:%0A%0A";
 
 cart.forEach(i=>{
-msg += `${i.code} - ${i.name} - Qtd:${i.qty}%0A`;
+
+msg += `${i.qty} und  |  Cod: ${i.code}  |  ${i.name}%0A`;
+
 });
 
 window.open(
-"https://wa.me/5514998510406?text="+msg
+"https://wa.me/5514998510406?text="+msg,
+"_blank"
 );
 
 }
