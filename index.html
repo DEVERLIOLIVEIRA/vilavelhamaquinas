@@ -13,6 +13,7 @@
 <style>
 
 /* BASE */
+
 *{
 margin:0;
 padding:0;
@@ -170,6 +171,13 @@ transition:0.2s;
 }
 
 .sidebar button:hover{
+background:#1d4f1f;
+color:#fff;
+}
+
+/* BOTÃO ATIVO */
+
+.sidebar button.active{
 background:#1d4f1f;
 color:#fff;
 }
@@ -494,12 +502,14 @@ font-size:22px;
 <div class="container topbar">
 
 <div class="logo">
+
 <img src="https://i.ibb.co/gZMm5Zzb/somente-logo.png">
 
 <div class="logo-text">
 <h1>VILA VELHA</h1>
 <p>MÁQUINAS E EQUIPAMENTOS LTDA</p>
 </div>
+
 </div>
 
 <nav>
@@ -573,7 +583,9 @@ Hoje o grupo oferece soluções completas para o campo, com atendimento especial
 <h3><i class="fa fa-phone"></i> CONTATO</h3>
 
 <p><a href="https://wa.me/5514998510406">Deverli (PEÇAS E ASSISTÊNCIA)</a></p>
+
 <p><a href="https://wa.me/5514998715100">Luiz (PEÇAS)</a></p>
+
 <p><a href="https://wa.me/5514996484753">Lucas (IMPLEMENTOS)</a></p>
 
 <p>
@@ -603,7 +615,9 @@ Carrinho <span id="count">0</span>
 
 <div id="cart"></div>
 
-<button class="send" onclick="send()">Enviar WhatsApp</button>
+<button class="send" onclick="send()">
+Enviar WhatsApp
+</button>
 
 </div>
 
@@ -661,10 +675,36 @@ colhedoras:[
 
 };
 
+/* LOAD PROFISSIONAL */
+
 function load(cat){
+
 currentCat = cat;
+
 render(data[cat]);
+
+document.querySelectorAll('.sidebar button').forEach(btn=>{
+btn.classList.remove('active');
+});
+
+const buttons = document.querySelectorAll('.sidebar button');
+
+buttons.forEach(btn=>{
+
+if(btn.getAttribute('onclick') === `load('${cat}')`){
+btn.classList.add('active');
 }
+
+});
+
+document.getElementById('grid').scrollIntoView({
+behavior:'smooth',
+block:'start'
+});
+
+}
+
+/* RENDER */
 
 function render(list){
 
@@ -685,9 +725,13 @@ g.innerHTML += `
 <h4>${p.name}</h4>
 
 <div class="qty">
+
 <button onclick="change(${i},-1)">-</button>
+
 <span>${p.qty}</span>
+
 <button onclick="change(${i},1)">+</button>
+
 </div>
 
 <button class="add" onclick="add(${i})">
@@ -701,6 +745,8 @@ Adicionar
 });
 
 }
+
+/* SEARCH */
 
 function searchAll(){
 
@@ -727,6 +773,8 @@ render(results);
 
 }
 
+/* QTD */
+
 function change(i,val){
 
 data[currentCat][i].qty += val;
@@ -738,6 +786,8 @@ data[currentCat][i].qty = 1;
 render(data[currentCat]);
 
 }
+
+/* ADD */
 
 function add(i){
 
@@ -755,6 +805,8 @@ updateCart();
 
 }
 
+/* UPDATE */
+
 function updateCart(){
 
 document.getElementById("count").innerText =
@@ -763,6 +815,8 @@ cart.reduce((a,b)=>a+b.qty,0);
 renderCart();
 
 }
+
+/* RENDER CART */
 
 function renderCart(){
 
@@ -798,6 +852,8 @@ Remover
 
 }
 
+/* CART QTD */
+
 function cartQty(index,val){
 
 let item = cart[index];
@@ -814,6 +870,8 @@ updateCart();
 
 }
 
+/* REMOVE */
+
 function removeItem(i){
 
 cart.splice(i,1);
@@ -822,12 +880,16 @@ updateCart();
 
 }
 
+/* TOGGLE */
+
 function toggleCart(){
 
 document.getElementById("panel")
 .classList.toggle("active");
 
 }
+
+/* SEND */
 
 function send(){
 
@@ -844,6 +906,8 @@ window.open(
 );
 
 }
+
+/* START */
 
 load('pecas');
 
