@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -40,6 +46,8 @@ max-width:1400px;
 margin:auto;
 padding:0 20px;
 }
+
+/* HEADER */
 
 header{
 background:#fff;
@@ -102,12 +110,12 @@ background:#1d4f1f;
 color:#fff;
 }
 
+/* 🔥 SEARCH NO TOPO */
 .header-search{
 flex:1;
 display:flex;
 justify-content:center;
 align-items:center;
-position:relative;
 }
 
 .header-search input{
@@ -120,51 +128,7 @@ font-size:14px;
 outline:none;
 }
 
-.suggestions{
-position:absolute;
-top:52px;
-width:100%;
-max-width:500px;
-background:#fff;
-border-radius:12px;
-box-shadow:0 8px 25px rgba(0,0,0,0.18);
-overflow:hidden;
-display:none;
-z-index:999999;
-border:1px solid #eee;
-}
-
-.suggestion-item{
-display:flex;
-align-items:center;
-gap:10px;
-padding:10px;
-cursor:pointer;
-border-bottom:1px solid #eee;
-transition:0.2s;
-}
-
-.suggestion-item:hover{
-background:#f4f4f4;
-}
-
-.suggestion-item img{
-width:45px;
-height:45px;
-object-fit:cover;
-border-radius:8px;
-}
-
-.suggestion-item strong{
-font-size:13px;
-color:#1d4f1f;
-}
-
-.suggestion-item span{
-font-size:12px;
-color:#555;
-display:block;
-}
+/* HERO - BANNER TOTAL ESQUERDA */
 
 .hero{
 width:100%;
@@ -173,10 +137,14 @@ background:url('https://i.ibb.co/9HHmb4T8/BANNER-ATUALIZADO.png') left center/co
 background-color:#fff;
 }
 
+/* MARKET */
+
 .market{
 display:block;
 padding:40px 20px;
 }
+
+/* SIDEBAR */
 
 .sidebar{
 position:fixed;
@@ -185,11 +153,17 @@ top:100px;
 width:265px;
 max-height:70vh;
 overflow-y:auto;
-background:#1A361D;
+
+background:#06402B;
 padding:22px;
 border-radius:6px;
 box-shadow:0 5px 18px rgba(0,0,0,0.08);
 z-index:9999;
+}
+
+/* REMOVIDO SEARCH DA SIDEBAR VISUALMENTE */
+.search-box{
+display:none;
 }
 
 .sidebar button{
@@ -209,10 +183,14 @@ background:#1d4f1f;
 color:#fff;
 }
 
+/* PRODUCTS */
+
 .products{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
 gap:15px;
+
+/* IMPORTANTE: espaço para a sidebar direita */
 margin-right:340px;
 }
 
@@ -227,17 +205,6 @@ overflow:hidden;
 
 .card:hover{
 transform:translateY(-4px);
-}
-
-.card.highlight{
-animation:highlightItem 1.8s ease;
-box-shadow:0 0 0 4px #f58220,0 8px 22px rgba(0,0,0,0.18);
-}
-
-@keyframes highlightItem{
-0%{transform:scale(1);}
-35%{transform:scale(1.04);}
-100%{transform:scale(1);}
 }
 
 .card img{
@@ -257,13 +224,6 @@ margin-top:8px;
 font-size:14px;
 margin:8px 0;
 min-height:36px;
-}
-
-.price{
-font-size:16px;
-font-weight:900;
-color:#1d4f1f;
-margin-bottom:10px;
 }
 
 .qty{
@@ -303,6 +263,8 @@ transition:0.2s;
 background:#143915;
 }
 
+/* ANIMAÇÃO */
+
 .fly-item{
 position:fixed;
 z-index:999999;
@@ -312,6 +274,8 @@ object-fit:cover;
 transition:all 0.8s cubic-bezier(.2,.8,.2,1);
 box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
+
+/* FOOTER */
 
 footer{
 background:#000;
@@ -362,6 +326,8 @@ color:#25d366;
 width:20px;
 text-align:center;
 }
+
+/* CART */
 
 .cart{
 position:fixed;
@@ -455,6 +421,8 @@ font-weight:900;
 cursor:pointer;
 }
 
+/* TOPO */
+
 #topBtn{
 position:fixed;
 right:20px;
@@ -471,6 +439,8 @@ display:none;
 z-index:99999;
 box-shadow:0 5px 18px rgba(0,0,0,0.25);
 }
+
+/* MOBILE */
 
 @media(max-width:768px){
 
@@ -504,23 +474,14 @@ height:230px;
 background-size:contain;
 }
 
-.sidebar{
-position:relative;
-right:auto;
-top:auto;
-width:100%;
-max-height:none;
-margin-bottom:20px;
-}
-
 .market{
+grid-template-columns:1fr;
 padding:20px 12px;
 }
 
 .products{
 grid-template-columns:repeat(2,1fr);
 gap:10px;
-margin-right:0;
 }
 
 .card img{
@@ -529,10 +490,6 @@ height:110px;
 
 .card h4{
 font-size:12px;
-}
-
-.price{
-font-size:14px;
 }
 
 .panel{
@@ -580,9 +537,9 @@ padding:50px 20px 30px;
 
 </div>
 
+<!-- SEARCH MOVIDA PARA O TOPO -->
 <div class="header-search">
-<input id="search" oninput="searchAll()" autocomplete="off" placeholder="Buscar peça...">
-<div id="suggestions" class="suggestions"></div>
+<input id="search" oninput="searchAll()" placeholder="Buscar peça...">
 </div>
 
 <nav>
@@ -600,6 +557,8 @@ padding:50px 20px 30px;
 <div class="market" id="produtos">
 
 <div class="sidebar">
+
+
 <button onclick="load('parafusos')">Parafusos</button>
 <button onclick="load('plantadeiras')">Plantadeiras</button>
 <button onclick="load('ensiladeiras')">Ensiladeiras</button>
@@ -626,13 +585,21 @@ padding:50px 20px 30px;
 
 <h3><i class="fa fa-building"></i> SOBRE O GRUPO</h3>
 
-<p>O Grupo Vila Velha é referência no setor agrícola da região, unindo experiência, qualidade e compromisso com o produtor rural há décadas.</p>
+<p>
+O Grupo Vila Velha é referência no setor agrícola da região, unindo experiência, qualidade e compromisso com o produtor rural há décadas.
+</p>
 
-<p>Fundada em 1995, a Comercial Agrícola Vila Velha Ltda iniciou sua trajetória no comércio atacadista de defensivos agrícolas, adubos e produtos voltados ao agronegócio.</p>
+<p>
+Fundada em 1995, a Comercial Agrícola Vila Velha Ltda iniciou sua trajetória no comércio atacadista de defensivos agrícolas, adubos e produtos voltados ao agronegócio.
+</p>
 
-<p>Há 9 anos nasceu a Vila Velha Máquinas e Equipamentos LTDA, especializada em máquinas, implementos, equipamentos agropecuários e peças em geral.</p>
+<p>
+Há 9 anos nasceu a Vila Velha Máquinas e Equipamentos LTDA, especializada em máquinas, implementos, equipamentos agropecuários e peças em geral.
+</p>
 
-<p>Hoje o grupo oferece soluções completas para o campo, com atendimento especializado, qualidade e confiança em cada negócio.</p>
+<p>
+Hoje o grupo oferece soluções completas para o campo, com atendimento especializado, qualidade e confiança em cada negócio.
+</p>
 
 </div>
 
@@ -640,12 +607,48 @@ padding:50px 20px 30px;
 
 <h3><i class="fa fa-store"></i> LOJA FARTURA</h3>
 
-<p><a href="https://wa.me/5514998510406" target="_blank"><i class="fab fa-whatsapp"></i>Deverli (Peças e assistência) - 14 99851-0406</a></p>
-<p><a href="https://wa.me/5514998715100" target="_blank"><i class="fab fa-whatsapp"></i>Luiz (Peças) - 14 99871-5100</a></p>
-<p><a href="https://wa.me/5514996484753" target="_blank"><i class="fab fa-whatsapp"></i>Lucas (Implementos) - 14 99648-4753</a></p>
-<p><a href="tel:+551433823823"><i class="fa fa-phone"></i>(14) 3382-3823</a></p>
-<p><a href="https://www.instagram.com/vilavelhamaquinas.fartura/" target="_blank"><i class="fab fa-instagram"></i>Instagram Loja Fartura</a></p>
-<p><a href="https://www.google.com/maps/search/?api=1&query=Rua+Barão+do+Rio+Branco+561+Fartura+SP" target="_blank"><i class="fa fa-location-dot"></i>Rua Barão do Rio Branco, 561</a></p>
+<p>
+<a href="https://wa.me/5514998510406" target="_blank">
+<i class="fab fa-whatsapp"></i>
+Deverli (Peças e assistência) - 14 99851-0406
+</a>
+</p>
+
+<p>
+<a href="https://wa.me/5514998715100" target="_blank">
+<i class="fab fa-whatsapp"></i>
+Luiz (Peças) - 14 99871-5100
+</a>
+</p>
+
+<p>
+<a href="https://wa.me/5514996484753" target="_blank">
+<i class="fab fa-whatsapp"></i>
+Lucas (Implementos) - 14 99648-4753
+</a>
+</p>
+
+<p>
+<a href="tel:+551433823823">
+<i class="fa fa-phone"></i>
+(14) 3382-3823
+</a>
+</p>
+
+<p>
+<a href="https://www.instagram.com/vilavelhamaquinas.fartura/" target="_blank">
+<i class="fab fa-instagram"></i>
+Instagram Loja Fartura
+</a>
+</p>
+
+<p>
+<a href="https://www.google.com/maps/search/?api=1&query=Rua+Barão+do+Rio+Branco+561+Fartura+SP" target="_blank">
+<i class="fa fa-location-dot"></i>
+Rua Barão do Rio Branco, 561
+</a>
+</p>
+
 <p>CEP 18870-054</p>
 
 </div>
@@ -654,10 +657,34 @@ padding:50px 20px 30px;
 
 <h3><i class="fa fa-store"></i> LOJA PIRAJU</h3>
 
-<p><a href="https://wa.me/5514997393849" target="_blank"><i class="fab fa-whatsapp"></i>Cesar (Peças e implementos) - 14 99739-3849</a></p>
-<p><a href="tel:+551433516063"><i class="fa fa-phone"></i>(14) 3351-6063</a></p>
-<p><a href="https://www.instagram.com/vilavelhamaquinaspiraju/" target="_blank"><i class="fab fa-instagram"></i>Instagram Loja Piraju</a></p>
-<p><a href="https://www.google.com/maps/search/?api=1&query=Avenida+Vereador+Milton+Spinola+680+Piraju+SP" target="_blank"><i class="fa fa-location-dot"></i>Avenida Vereador Milton Spinola, 680 - Jardim Paulista</a></p>
+<p>
+<a href="https://wa.me/5514997393849" target="_blank">
+<i class="fab fa-whatsapp"></i>
+Cesar (Peças e implementos) - 14 99739-3849
+</a>
+</p>
+
+<p>
+<a href="tel:+551433516063">
+<i class="fa fa-phone"></i>
+(14) 3351-6063
+</a>
+</p>
+
+<p>
+<a href="https://www.instagram.com/vilavelhamaquinaspiraju/" target="_blank">
+<i class="fab fa-instagram"></i>
+Instagram Loja Piraju
+</a>
+</p>
+
+<p>
+<a href="https://www.google.com/maps/search/?api=1&query=Avenida+Vereador+Milton+Spinola+680+Piraju+SP" target="_blank">
+<i class="fa fa-location-dot"></i>
+Avenida Vereador Milton Spinola, 680 - Jardim Paulista
+</a>
+</p>
+
 <p>CEP 18.803-340</p>
 
 </div>
@@ -680,13 +707,28 @@ Carrinho <span id="count">0</span>
 <div id="cart"></div>
 
 <select id="contactSelect" class="contact-select">
-<option value="5514998510406">Deverli - Peças e assistência</option>
-<option value="5514998715100">Luiz - Peças</option>
-<option value="5514996484753">Lucas - Implementos</option>
-<option value="5514997393849">Cesar - Peças e implementos</option>
+
+<option value="5514998510406">
+Deverli - Peças e assistência
+</option>
+
+<option value="5514998715100">
+Luiz - Peças
+</option>
+
+<option value="5514996484753">
+Lucas - Implementos
+</option>
+
+<option value="5514997393849">
+Cesar - Peças e implementos
+</option>
+
 </select>
 
-<button class="send" onclick="send()">Enviar Orçamento</button>
+<button class="send" onclick="send()">
+Enviar Orçamento
+</button>
 
 </div>
 
@@ -697,258 +739,168 @@ Carrinho <span id="count">0</span>
 <script>
 
 let cart = [];
-let currentCat = 'parafusos';
+let currentCat = 'pecas';
 
 const data = {
 
 parafusos:[
-{code:"PR0001",name:"Parafuso M10x25",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
-{code:"PR0002",name:"Parafuso M10x35",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
-{code:"PR0003",name:"Parafuso M10x45",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
-{code:"PR0004",name:"Parafuso M10x50",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
-{code:"PR0005",name:"Parafuso M10x55",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
-{code:"PR0006",name:"Parafuso M10x60",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
-{code:"PR0007",name:"Parafuso M10x65",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
-{code:"PR0008",name:"Parafuso M12x25",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
-{code:"PR0009",name:"Parafuso M12x35",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
-{code:"PR0010",name:"Parafuso M12x40",price:1.00,img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1}
+{code:"PR0001",name:"Parafuso M10x25",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0002",name:"Parafuso M10x35",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0003",name:"Parafuso M10x45",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0004",name:"Parafuso M10x50",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0005",name:"Parafuso M10x55",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0006",name:"Parafuso M10x60",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0007",name:"Parafuso M10x65",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0008",name:"Parafuso M12x25",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0009",name:"Parafuso M12x35",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0010",name:"Parafuso M12x40",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0011",name:"Parafuso M12x45",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0012",name:"Parafuso M12x50",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0013",name:"Parafuso M12x60",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0014",name:"Parafuso M8x25",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0015",name:"Parafuso M8x35",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0016",name:"Parafuso M8x40",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0017",name:"Parafuso M8x50",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0018",name:"Parafuso M8x55",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0019",name:"Parafuso M8x60",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1},
+{code:"PR0020",name:"Parafuso M6x25",img:"https://images.tcdn.com.br/img/img_prod/1348010/parafuso_sextavado_aco_inox_a2_304_237_2_fe9147d33af984d6007fbf759f895f2b.jpg",qty:1}
 ],
 
 plantadeiras:[
-{code:"0503031421",name:"BANDA COMPACTADORA 295 X 25",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"PL2",name:"Mola plantadeira",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+{code:"PL1",name:"Disco plantadeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"PL2",name:"Mola plantadeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ],
 
 ensiladeiras:[
-{code:"EN1",name:"Lâmina ensiladeira",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"EN2",name:"Rotor alimentação",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+{code:"EN1",name:"Lâmina ensiladeira",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"EN2",name:"Rotor alimentação",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ],
 
 rolamentos:[
-{code:"RO1",name:"Rolamento 6204",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"RO2",name:"Rolamento 6305",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+{code:"RO1",name:"Rolamento 6204",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"RO2",name:"Rolamento 6305",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ],
 
 mancais:[
-{code:"MA1",name:"Mancal ferro fundido",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"MA2",name:"Mancal com rolamento",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+{code:"MA1",name:"Mancal ferro fundido",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"MA2",name:"Mancal com rolamento",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ],
 
 correntes:[
-{code:"CO1",name:"Corrente agrícola 50H",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"CO2",name:"Corrente reforçada transmissão",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+{code:"CO1",name:"Corrente agrícola 50H",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"CO2",name:"Corrente reforçada transmissão",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ],
 
 jacto:[
-{code:"JA1",name:"Bico pulverizador Jacto",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"JA2",name:"Filtro pulverizador Jacto",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+{code:"JA1",name:"Bico pulverizador Jacto",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"JA2",name:"Filtro pulverizador Jacto",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ],
 
 recolhedoras:[
-{code:"RE1",name:"Pente recolhedor",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"RE2",name:"Tambor recolhedora",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+{code:"RE1",name:"Pente recolhedor",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"RE2",name:"Tambor recolhedora",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ],
 
 colhedoras:[
-{code:"CL1",name:"Faca colhedora milho",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"CL2",name:"Placa corte reforçada",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
-],
-
-implementos:[
-{code:"IM1",name:"Implemento agrícola exemplo",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
-{code:"IM2",name:"Peça para implemento",price:1.00,img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+{code:"CL1",name:"Faca colhedora milho",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"CL2",name:"Placa corte reforçada",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ]
 
 };
 
-function formatPrice(value){
-return value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-}
-
-function normalizeText(text){
-return text.toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-}
-
-function getAllProducts(){
-let all = [];
-
-Object.keys(data).forEach(cat=>{
-data[cat].forEach(p=>{
-all.push({...p,cat:cat});
-});
-});
-
-return all;
-}
-
-function findProductByCode(code){
-let found = null;
-
-Object.keys(data).forEach(cat=>{
-data[cat].forEach(p=>{
-if(p.code === code){
-found = {product:p,cat:cat};
-}
-});
-});
-
-return found;
-}
-
 function load(cat){
+
 currentCat = cat;
 
-document.getElementById("search").value = "";
-hideSuggestions();
-
-render(data[cat],cat);
+render(data[cat]);
 
 window.scrollTo({
 top:document.getElementById('produtos').offsetTop - 80,
 behavior:'smooth'
 });
+
 }
 
-function render(list,catReference = null){
-let g = document.getElementById("grid");
+function render(list){
 
-g.innerHTML = "";
+let g=document.getElementById("grid");
 
-if(list.length === 0){
-g.innerHTML = `<div style="grid-column:1/-1;background:#fff;padding:30px;border-radius:14px;text-align:center;font-weight:800;color:#555;">Nenhum item encontrado.</div>`;
-return;
-}
+g.innerHTML="";
 
-list.forEach((p)=>{
-let cat = p.cat || catReference || currentCat;
+list.forEach((p,i)=>{
 
-g.innerHTML += `
-<div class="card" id="item-${p.code}">
+g.innerHTML+=`
+
+<div class="card">
+
 <img src="${p.img}">
+
 <div class="code">${p.code}</div>
+
 <h4>${p.name}</h4>
-<div class="price">${formatPrice(p.price)}</div>
 
 <div class="qty">
-<button onclick="change('${p.code}',-1)">-</button>
+
+<button onclick="change(${i},-1)">-</button>
+
 <span>${p.qty}</span>
-<button onclick="change('${p.code}',1)">+</button>
+
+<button onclick="change(${i},1)">+</button>
+
 </div>
 
-<button class="add" onclick="add('${p.code}',this)">Adicionar</button>
+<button class="add" onclick="add(${i},this)">
+Adicionar
+</button>
+
 </div>
+
 `;
+
 });
+
 }
 
 function searchAll(){
-let input = document.getElementById("search");
-let v = normalizeText(input.value.trim());
-let suggestions = document.getElementById("suggestions");
 
-if(v === ""){
-hideSuggestions();
-render(data[currentCat],currentCat);
-return;
+let v=document.getElementById("search").value.toLowerCase();
+
+let results=[];
+
+Object.keys(data).forEach(cat=>{
+
+data[cat].forEach(p=>{
+
+if(
+p.name.toLowerCase().includes(v) ||
+p.code.toLowerCase().includes(v)
+){
+results.push(p);
 }
 
-let results = getAllProducts().filter(p=>{
-return normalizeText(p.name).includes(v) || normalizeText(p.code).includes(v);
+});
+
 });
 
 render(results);
 
-let suggestionHTML = "";
-
-results.slice(0,8).forEach(p=>{
-suggestionHTML += `
-<div class="suggestion-item" onclick="goToItem('${p.code}')">
-<img src="${p.img}">
-<div>
-<strong>${p.code}</strong>
-<span>${p.name} - ${formatPrice(p.price)}</span>
-</div>
-</div>
-`;
-});
-
-if(results.length > 0){
-suggestions.innerHTML = suggestionHTML;
-suggestions.style.display = "block";
-}else{
-suggestions.innerHTML = `
-<div class="suggestion-item">
-<div>
-<strong>Nenhum item encontrado</strong>
-<span>Tente buscar por código ou nome da peça</span>
-</div>
-</div>
-`;
-suggestions.style.display = "block";
-}
 }
 
-function hideSuggestions(){
-document.getElementById("suggestions").style.display = "none";
+function change(i,val){
+
+data[currentCat][i].qty += val;
+
+if(data[currentCat][i].qty < 1){
+data[currentCat][i].qty = 1;
 }
 
-function goToItem(code){
-let found = findProductByCode(code);
+render(data[currentCat]);
 
-if(!found)return;
-
-currentCat = found.cat;
-
-document.getElementById("search").value = found.product.code + " - " + found.product.name;
-
-hideSuggestions();
-
-render(data[found.cat],found.cat);
-
-setTimeout(()=>{
-let card = document.getElementById("item-" + code);
-
-if(card){
-card.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-card.classList.add("highlight");
-
-setTimeout(()=>{
-card.classList.remove("highlight");
-},2200);
-}
-},100);
 }
 
-function change(code,val){
-let found = findProductByCode(code);
+function add(i,btn){
 
-if(!found)return;
-
-found.product.qty += val;
-
-if(found.product.qty < 1){
-found.product.qty = 1;
-}
-
-let searchValue = document.getElementById("search").value.trim();
-
-if(searchValue !== ""){
-searchAll();
-}else{
-render(data[currentCat],currentCat);
-}
-}
-
-function add(code,btn){
-let foundProduct = findProductByCode(code);
-
-if(!foundProduct)return;
-
-let item = foundProduct.product;
+let item=data[currentCat][i];
 
 const card = btn.closest('.card');
 const img = card.querySelector('img');
@@ -983,7 +935,7 @@ setTimeout(()=>{
 fly.remove();
 },850);
 
-let found = cart.find(c=>c.code===item.code);
+let found=cart.find(c=>c.code===item.code);
 
 if(found){
 found.qty += item.qty;
@@ -992,123 +944,125 @@ cart.push({...item});
 }
 
 updateCart();
+
 }
 
 function updateCart(){
+
 document.getElementById("count").innerText =
 cart.reduce((a,b)=>a+b.qty,0);
 
 renderCart();
+
 }
 
 function renderCart(){
-let c = document.getElementById("cart");
 
-c.innerHTML = "";
+let c=document.getElementById("cart");
+
+c.innerHTML="";
 
 cart.forEach((i,index)=>{
 
-let subtotal = i.qty * i.price;
+c.innerHTML+=`
 
-c.innerHTML += `
 <div class="item">
+
 <b>${i.code}</b><br>
+
 ${i.name}<br>
-Preço: ${formatPrice(i.price)}<br>
+
 Qtd: ${i.qty}<br>
-Subtotal: <b>${formatPrice(subtotal)}</b><br>
+
 <button onclick="cartQty(${index},1)">+</button>
+
 <button onclick="cartQty(${index},-1)">-</button>
+
 <button onclick="removeItem(${index})">Remover</button>
+
 </div>
+
 `;
+
 });
 
-if(cart.length > 0){
-let total = cart.reduce((sum,item)=>sum + (item.qty * item.price),0);
-
-c.innerHTML += `
-<div class="item">
-<b>Total: ${formatPrice(total)}</b>
-</div>
-`;
-}
 }
 
 function cartQty(index,val){
-let item = cart[index];
+
+let item=cart[index];
 
 if(!item)return;
 
 item.qty += val;
 
-if(item.qty <= 0){
+if(item.qty<=0){
 cart.splice(index,1);
 }
 
 updateCart();
+
 }
 
 function removeItem(i){
+
 cart.splice(i,1);
+
 updateCart();
+
 }
 
 function toggleCart(){
-document.getElementById("panel").classList.toggle("active");
+
+document.getElementById("panel")
+.classList.toggle("active");
+
 }
 
 function send(){
-let numero = document.getElementById("contactSelect").value;
 
-let msg = "Olá, gostaria de um orçamento:%0A%0A";
+let numero =
+document.getElementById("contactSelect").value;
+
+let msg="Olá, gostaria de um orçamento:%0A%0A";
 
 cart.forEach(i=>{
-let subtotal = i.qty * i.price;
-msg += `${i.qty} und - ${i.code} - ${i.name} - ${formatPrice(i.price)} cada - Subtotal: ${formatPrice(subtotal)}%0A`;
+
+msg += `${i.qty} und - ${i.code} - ${i.name}%0A`;
+
 });
 
-let total = cart.reduce((sum,item)=>sum + (item.qty * item.price),0);
-
-msg += `%0ATotal: ${formatPrice(total)}`;
-
 window.open(
-"https://wa.me/" + numero + "?text=" + msg,
+"https://wa.me/"+numero+"?text="+msg,
 "_blank"
 );
+
 }
 
-window.onscroll = function(){
-const btn = document.getElementById("topBtn");
+window.onscroll=function(){
 
-if(document.body.scrollTop > 400 || document.documentElement.scrollTop > 400){
-btn.style.display = "block";
+const btn=document.getElementById("topBtn");
+
+if(document.body.scrollTop>400 || document.documentElement.scrollTop>400){
+btn.style.display="block";
 }else{
-btn.style.display = "none";
+btn.style.display="none";
 }
+
 };
 
 function topFunction(){
+
 window.scrollTo({
 top:0,
 behavior:'smooth'
 });
+
 }
 
-document.addEventListener("click",function(e){
-if(!e.target.closest(".header-search")){
-hideSuggestions();
-}
-});
-
-window.addEventListener("load",function(){
-render(data[currentCat], currentCat);
-setTimeout(function(){
-window.scrollTo(0,0);
-},50);
-});
 
 </script>
 
 </body>
 </html>
+```
