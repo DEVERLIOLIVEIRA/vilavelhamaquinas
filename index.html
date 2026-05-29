@@ -2,9 +2,6 @@
 
 
 
-
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -116,6 +113,7 @@ flex:1;
 display:flex;
 justify-content:center;
 align-items:center;
+position:relative;
 }
 
 .header-search input{
@@ -126,6 +124,48 @@ border-radius:10px;
 border:1px solid #ddd;
 font-size:14px;
 outline:none;
+}
+
+/* AUTO SEARCH */
+.search-suggestions{
+position:absolute;
+top:55px;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:500px;
+background:#fff;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+z-index:999999;
+overflow:hidden;
+display:none;
+}
+
+.search-item{
+display:flex;
+align-items:center;
+gap:10px;
+padding:10px;
+cursor:pointer;
+border-bottom:1px solid #eee;
+}
+
+.search-item:hover{
+background:#f5f5f5;
+}
+
+.search-item img{
+width:45px;
+height:45px;
+object-fit:cover;
+border-radius:6px;
+}
+
+.search-item span{
+font-size:13px;
+font-weight:700;
+color:#222;
 }
 
 /* HERO - BANNER TOTAL ESQUERDA */
@@ -539,7 +579,8 @@ padding:50px 20px 30px;
 
 <!-- SEARCH MOVIDA PARA O TOPO -->
 <div class="header-search">
-<input id="search" oninput="searchAll()" placeholder="Buscar peça...">
+<input id="search" oninput="searchAll()" placeholder="Buscar peça..." autocomplete="off">
+<div id="suggestions" class="search-suggestions"></div>
 </div>
 
 <nav>
@@ -863,9 +904,17 @@ Adicionar
 
 function searchAll(){
 
-let v=document.getElementById("search").value.toLowerCase();
-
+let v=document.getElementById("search").value.toLowerCase().trim();
+let suggestions=document.getElementById("suggestions");
 let results=[];
+
+suggestions.innerHTML="";
+
+if(v.length===0){
+suggestions.style.display="none";
+render(data[currentCat] || []);
+return;
+}
 
 Object.keys(data).forEach(cat=>{
 
@@ -875,7 +924,7 @@ if(
 p.name.toLowerCase().includes(v) ||
 p.code.toLowerCase().includes(v)
 ){
-results.push(p);
+results.push({...p,cat});
 }
 
 });
@@ -884,7 +933,82 @@ results.push(p);
 
 render(results);
 
+if(results.length===0){
+suggestions.style.display="none";
+return;
 }
+
+results.slice(0,8).forEach(p=>{
+
+suggestions.innerHTML+=`
+
+<div class="search-item" onclick="goToProduct('${p.cat}','${p.code}')">
+
+<img src="${p.img}">
+
+<span>
+${p.code}<br>
+${p.name}
+</span>
+
+</div>
+
+`;
+
+});
+
+suggestions.style.display="block";
+
+}
+
+function goToProduct(cat,code){
+
+currentCat = cat;
+
+render(data[cat]);
+
+document.getElementById("suggestions").style.display="none";
+
+setTimeout(()=>{
+
+const cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+const productCode=card.querySelector(".code").innerText;
+
+if(productCode===code){
+
+card.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+card.style.boxShadow="0 0 0 4px #1d4f1f";
+card.style.transform="translateY(-4px) scale(1.02)";
+
+setTimeout(()=>{
+card.style.boxShadow="";
+card.style.transform="";
+},2500);
+
+}
+
+});
+
+},150);
+
+}
+
+document.addEventListener("click",(e)=>{
+
+if(!e.target.closest(".header-search")){
+
+document.getElementById("suggestions").style.display="none";
+
+}
+
+});
 
 function change(i,val){
 
