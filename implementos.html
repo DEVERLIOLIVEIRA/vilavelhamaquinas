@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Implementos Agrícolas - Vila Velha</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Montserrat,sans-serif;
+}
+
+body{
+background:#fafafa;
+color:#222;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+header{
+background:#fff;
+position:sticky;
+top:0;
+z-index:9999;
+box-shadow:0 3px 15px rgba(0,0,0,.10);
+}
+
+.container{
+width:100%;
+max-width:1400px;
+margin:auto;
+padding:0 20px;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+padding:22px 0;
+flex-wrap:wrap;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo img{
+width:105px;
+}
+
+.logo-text h1{
+font-size:34px;
+font-weight:900;
+color:#1d4f1f;
+line-height:1;
+}
+
+.logo-text p{
+font-size:13px;
+font-weight:800;
+color:#f58220;
+}
+
+nav{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+nav a{
+text-decoration:none;
+font-weight:900;
+color:#222;
+padding:10px 14px;
+border-radius:8px;
+}
+
+nav a:hover{
+background:#1d4f1f;
+color:#fff;
+}
+
+.hero{
+background:#06402B;
+color:#fff;
+padding:80px 20px;
+text-align:center;
+}
+
+.hero h2{
+font-size:42px;
+font-weight:900;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+font-weight:600;
+}
+
+.search-area{
+padding:30px 20px 10px;
+text-align:center;
+}
+
+.search-area input{
+width:100%;
+max-width:600px;
+padding:16px;
+border-radius:12px;
+border:1px solid #ccc;
+font-size:15px;
+outline:none;
+}
+
+.products{
+max-width:1400px;
+margin:30px auto;
+padding:0 20px;
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+gap:20px;
+}
+
+.card{
+background:#fff;
+padding:14px;
+border-radius:16px;
+box-shadow:0 3px 12px rgba(0,0,0,.08);
+transition:.2s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.code{
+font-size:12px;
+color:#777;
+margin-top:10px;
+font-weight:700;
+}
+
+.card h3{
+font-size:16px;
+margin:8px 0 14px;
+min-height:42px;
+}
+
+.qty{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin-bottom:12px;
+}
+
+.qty button{
+padding:7px 12px;
+border:none;
+border-radius:8px;
+background:#ddd;
+font-weight:900;
+cursor:pointer;
+}
+
+.qty span{
+font-weight:900;
+}
+
+.add{
+width:100%;
+padding:12px;
+background:#1d4f1f;
+color:#fff;
+border:none;
+border-radius:10px;
+font-weight:900;
+cursor:pointer;
+}
+
+.add:hover{
+background:#143915;
+}
+
+.cart{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#1d4f1f;
+color:#fff;
+padding:18px 24px;
+border-radius:50px;
+cursor:pointer;
+font-weight:900;
+z-index:99999;
+box-shadow:0 5px 18px rgba(0,0,0,.25);
+}
+
+.cart span{
+background:#f58220;
+color:#000;
+padding:4px 9px;
+border-radius:50%;
+margin-left:5px;
+}
+
+.panel{
+position:fixed;
+top:0;
+right:-400px;
+width:340px;
+height:100%;
+background:#fff;
+z-index:999999;
+box-shadow:-5px 0 15px rgba(0,0,0,.2);
+transition:.3s;
+padding:15px;
+overflow-y:auto;
+}
+
+.panel.active{
+right:0;
+}
+
+.close{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+
+.close button{
+background:red;
+color:#fff;
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.item{
+padding:12px;
+border-bottom:1px solid #eee;
+font-size:13px;
+}
+
+.item button{
+padding:4px 8px;
+margin-top:6px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-weight:800;
+}
+
+.contact-select{
+width:100%;
+padding:12px;
+border-radius:10px;
+margin-top:15px;
+margin-bottom:10px;
+font-weight:700;
+border:1px solid #ccc;
+}
+
+.send{
+width:100%;
+padding:14px;
+background:#25d366;
+color:#fff;
+border:none;
+border-radius:10px;
+font-weight:900;
+cursor:pointer;
+}
+
+footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:35px 20px;
+margin-top:60px;
+}
+
+footer a{
+color:#25d366;
+text-decoration:none;
+font-weight:800;
+}
+
+@media(max-width:768px){
+
+.logo img{
+width:80px;
+}
+
+.logo-text h1{
+font-size:26px;
+}
+
+.topbar{
+flex-direction:column;
+text-align:center;
+}
+
+nav{
+justify-content:center;
+}
+
+.hero h2{
+font-size:30px;
+}
+
+.products{
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.card img{
+height:120px;
+}
+
+.card h3{
+font-size:13px;
+}
+
+.panel{
+width:100%;
+right:-100%;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container topbar">
+
+<div class="logo">
+<img src="https://i.ibb.co/gZMm5Zzb/somente-logo.png">
+
+<div class="logo-text">
+<h1>VILA VELHA</h1>
+<p>MÁQUINAS E EQUIPAMENTOS LTDA</p>
+</div>
+</div>
+
+<nav>
+<a href="index.html">VOLTAR PARA PEÇAS</a>
+<a href="#produtos">IMPLEMENTOS</a>
+<a href="#contato">CONTATO</a>
+</nav>
+
+</div>
+</header>
+
+<section class="hero">
+<h2>IMPLEMENTOS AGRÍCOLAS</h2>
+<p>Carretas, pulverizadores, distribuidores, grades, roçadeiras e muito mais.</p>
+</section>
+
+<div class="search-area">
+<input id="search" oninput="searchImplementos()" placeholder="Buscar implemento...">
+</div>
+
+<section id="produtos" class="products"></section>
+
+<footer id="contato">
+<p>Vila Velha Máquinas e Equipamentos LTDA</p>
+<p>
+<a href="https://wa.me/5514996484753" target="_blank">
+<i class="fab fa-whatsapp"></i> Falar com Lucas - Implementos
+</a>
+</p>
+</footer>
+
+<div class="cart" onclick="toggleCart()">
+Carrinho <span id="count">0</span>
+</div>
+
+<div class="panel" id="panel">
+
+<div class="close">
+<h3>Carrinho</h3>
+<button onclick="toggleCart()">✖</button>
+</div>
+
+<div id="cart"></div>
+
+<select id="contactSelect" class="contact-select">
+<option value="5514996484753">Lucas - Implementos</option>
+<option value="5514998510406">Deverli - Peças e assistência</option>
+<option value="5514997393849">Cesar - Peças e implementos</option>
+</select>
+
+<button class="send" onclick="send()">Enviar Orçamento</button>
+
+</div>
+
+<script>
+let cart = [];
+
+const implementos = [
+{
+code:"IMP001",
+name:"Carreta Agrícola 4 Toneladas",
+img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",
+qty:1
+},
+{
+code:"IMP002",
+name:"Carreta Agrícola 5 Toneladas",
+img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",
+qty:1
+},
+{
+code:"IMP003",
+name:"Pulverizador Agrícola",
+img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",
+qty:1
+},
+{
+code:"IMP004",
+name:"Distribuidor de Calcário",
+img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",
+qty:1
+},
+{
+code:"IMP005",
+name:"Grade Aradora",
+img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",
+qty:1
+},
+{
+code:"IMP006",
+name:"Roçadeira Agrícola",
+img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",
+qty:1
+}
+];
+
+function render(list){
+
+const grid = document.getElementById("produtos");
+
+grid.innerHTML = "";
+
+list.forEach((p,i)=>{
+
+grid.innerHTML += `
+<div class="card">
+
+<img src="${p.img}">
+
+<div class="code">${p.code}</div>
+
+<h3>${p.name}</h3>
+
+<div class="qty">
+<button onclick="changeQty('${p.code}',-1)">-</button>
+<span>${p.qty}</span>
+<button onclick="changeQty('${p.code}',1)">+</button>
+</div>
+
+<button class="add" onclick="addCart('${p.code}')">Adicionar</button>
+
+</div>
+`;
+
+});
+
+}
+
+function searchImplementos(){
+
+let value = document.getElementById("search").value.toLowerCase().trim();
+
+if(value === ""){
+render(implementos);
+return;
+}
+
+let results = implementos.filter(p =>
+p.name.toLowerCase().includes(value) ||
+p.code.toLowerCase().includes(value)
+);
+
+render(results);
+
+}
+
+function changeQty(code,val){
+
+let item = implementos.find(p => p.code === code);
+
+if(!item) return;
+
+item.qty += val;
+
+if(item.qty < 1){
+item.qty = 1;
+}
+
+searchImplementos();
+
+}
+
+function addCart(code){
+
+let item = implementos.find(p => p.code === code);
+
+if(!item) return;
+
+let found = cart.find(c => c.code === item.code);
+
+if(found){
+found.qty += item.qty;
+}else{
+cart.push({...item});
+}
+
+updateCart();
+
+}
+
+function updateCart(){
+
+document.getElementById("count").innerText =
+cart.reduce((a,b)=>a+b.qty,0);
+
+renderCart();
+
+}
+
+function renderCart(){
+
+let c = document.getElementById("cart");
+
+c.innerHTML = "";
+
+cart.forEach((i,index)=>{
+
+c.innerHTML += `
+<div class="item">
+<b>${i.code}</b><br>
+${i.name}<br>
+Qtd: ${i.qty}<br>
+<button onclick="cartQty(${index},1)">+</button>
+<button onclick="cartQty(${index},-1)">-</button>
+<button onclick="removeItem(${index})">Remover</button>
+</div>
+`;
+
+});
+
+}
+
+function cartQty(index,val){
+
+let item = cart[index];
+
+if(!item) return;
+
+item.qty += val;
+
+if(item.qty <= 0){
+cart.splice(index,1);
+}
+
+updateCart();
+
+}
+
+function removeItem(index){
+
+cart.splice(index,1);
+updateCart();
+
+}
+
+function toggleCart(){
+
+document.getElementById("panel").classList.toggle("active");
+
+}
+
+function send(){
+
+let numero = document.getElementById("contactSelect").value;
+
+let msg = "Olá, gostaria de um orçamento de implementos:%0A%0A";
+
+cart.forEach(i=>{
+
+msg += `${i.qty} und - ${i.code} - ${i.name}%0A`;
+
+});
+
+window.open("https://wa.me/"+numero+"?text="+msg,"_blank");
+
+}
+
+window.onload = function(){
+render(implementos);
+window.scrollTo(0,0);
+};
+</script>
+
+</body>
+</html>
