@@ -118,8 +118,10 @@ footer a{color:#fff;text-decoration:none;font-weight:700;}
 footer a:hover{color:#f58220;}
 footer i{margin-right:10px;color:#25d366;width:20px;text-align:center;}
 
-.cart{position:fixed;right:20px;bottom:20px;background:#1d4f1f;color:#fff;padding:18px 24px;border-radius:50px;cursor:pointer;font-weight:900;z-index:99999;box-shadow:0 5px 18px rgba(0,0,0,.25);}
-.cart span{background:#f58220;color:#000;padding:4px 9px;border-radius:50%;margin-left:5px;}
+.cart{position:fixed;right:20px;bottom:20px;background:#1d4f1f;color:#fff;padding:14px 22px;border-radius:50px;cursor:pointer;font-weight:900;z-index:99999;box-shadow:0 5px 18px rgba(0,0,0,.25);display:flex;align-items:center;gap:10px;}
+.cart i{font-size:24px;color:#fff;margin:0;}
+.cart-text{font-size:15px;font-weight:900;white-space:nowrap;}
+.cart span{background:#f58220;color:#000;min-width:26px;height:26px;padding:0 7px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;}
 
 .panel{position:fixed;top:0;right:-400px;width:340px;height:100%;background:#fff;z-index:999999;box-shadow:-5px 0 15px rgba(0,0,0,.2);transition:.3s;padding:15px;overflow-y:auto;}
 .panel.active{right:0;}
@@ -150,7 +152,9 @@ market{padding:20px 12px;}
 .card img{height:110px;}
 .card h4{font-size:12px;}
 .panel{width:100%;right:-100%;}
-.cart{right:12px;bottom:12px;padding:14px 18px;font-size:14px;}
+.cart{right:12px;bottom:12px;padding:12px 16px;font-size:14px;}
+.cart i{font-size:22px;}
+.cart-text{font-size:13px;}
 #topBtn{right:12px;bottom:80px;width:50px;height:50px;}
 footer{padding:50px 20px 30px;}
 }
@@ -220,7 +224,7 @@ footer{padding:50px 20px 30px;}
 <button onclick="load('jacto')">Jacto</button>
 <button onclick="load('recolhedoras')">Recolhedoras</button>
 <button onclick="load('colhedoras')">Colhedoras</button>
-<button onclick="window.location.href='implementos.html'">Implementos</button>
+<button onclick="load('correias')">Correias</button>
 </div>
 
 <div id="grid" class="products"></div>
@@ -264,7 +268,7 @@ footer{padding:50px 20px 30px;}
 </div>
 </footer>
 
-<div class="cart" onclick="toggleCart()">Carrinho <span id="count">0</span></div>
+<div class="cart" onclick="toggleCart()"><i class="fa-solid fa-tractor"></i><div class="cart-text">Carrinho</div><span id="count">0</span></div>
 
 <div class="panel" id="panel">
 <div class="close">
@@ -285,7 +289,7 @@ footer{padding:50px 20px 30px;}
 </div>
 
 <button id="topBtn" onclick="topFunction()">
-<i class="fa fa-arrow-up"></i>
+<i class="fa-solid fa-gear"></i>
 </button>
 
 <script>
@@ -431,6 +435,11 @@ recolhedoras:[
 colhedoras:[
 {code:"CL1",name:"Faca colhedora milho",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
 {code:"CL2",name:"Placa corte reforçada",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
+],
+
+correias:[
+{code:"A 30",name:"Correia A 30",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1},
+{code:"A 31",name:"Correia A 30",img:"https://i.ibb.co/s4VPwTH/S-LOGO-2.png",qty:1}
 ]
 
 };
